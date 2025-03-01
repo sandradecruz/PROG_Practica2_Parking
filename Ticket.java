@@ -72,12 +72,28 @@ public class Ticket {
         nuevoTicket.add(plaza);
         return nuevoTicket;
     }
+     public static void Aparcamiento(int[][] matriz) {
+        for (int i = 0; i < parking.length; i++) {
+            for (int j = 0; j < parking[i].length; j++) {
+                if (matriz[i][j] == 0) {
+                    piso = i;
+                    plaza = j;
+                    matriz[i][j] = 1;
+                    return;
+                } /*Vale esto funciona pero estaba pensando que estaria bien que
+                una vez asegurado que no hay espacio en el parking, que no te dejase.
+                No se me ocurre como, probablemente por las horas, pero si se te ocurre algo ponlo aqui,
+                de todas maneras, me comprometo a buscar algo para solucionarlo
+                */
+            }
+        }
+    }
     
-    // Método para calcular el costo del estacionamiento
+    // MÃ©todo para calcular el costo del estacionamiento
     public double calcularCosto() {
         LocalTime salida = LocalTime.now();
         int minutosEstacionados = salida.toSecondOfDay() / 60 - fechaHoraL.toSecondOfDay() / 60;
-        if (minutosEstacionados <= 0) minutosEstacionados = 1; //Añadimos como mínimo un minuto de estacionamiento
+        if (minutosEstacionados <= 0) minutosEstacionados = 1; //AÃ±adimos como mÃ­nimo un minuto de estacionamiento
         return minutosEstacionados * TARIFA_POR_MINUTO;
     }
 
