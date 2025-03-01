@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package proyectoparkingprog;
+package practica2parking;
 
 import java.util.ArrayList;
 import java.time.LocalTime;
@@ -54,6 +54,7 @@ public class Ticket {
         this.nuevoTicket = nuevoTicket;
     }
 
+    private static final double TARIFA_POR_MINUTO = 0.50;
     int[][] parking = new int[3][20];
     int id;
     LocalTime fechaHoraL = LocalTime.now();
@@ -72,6 +73,13 @@ public class Ticket {
         return nuevoTicket;
     }
     
+    // Método para calcular el costo del estacionamiento
+    public double calcularCosto() {
+        LocalTime salida = LocalTime.now();
+        int minutosEstacionados = salida.toSecondOfDay() / 60 - fechaHoraL.toSecondOfDay() / 60;
+        if (minutosEstacionados <= 0) minutosEstacionados = 1; //Añadimos como mínimo un minuto de estacionamiento
+        return minutosEstacionados * TARIFA_POR_MINUTO;
+    }
 
     public static int parseador(LocalTime hora) {
         return hora.getHour() * 10000 + hora.getMinute() * 100 + hora.getSecond();
