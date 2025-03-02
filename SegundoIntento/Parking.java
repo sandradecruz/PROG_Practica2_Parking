@@ -20,35 +20,13 @@ public class Parking {
         this.tickets = new ArrayList<>(); //Inicializa los tickets
     }
     
-    private int numMatricula = 1234;
-    private String letrasMatricula = "ABC";
-    
-    public String generarMatricula(){
-        String matricula = numMatricula +"-"+letrasMatricula; //Generamos la matricula
-        if(numMatricula < 9999){
-            numMatricula++; //Sumamos los numeros hasta que llegue al maximo (9999)
-        }else{
-            numMatricula = 0000; //Reseteamos el numero
-            letrasMatricula = sumarLetra(letrasMatricula);
-        }
-        return matricula;
-    }
-    
-    //AQUI VA EL MÉTODO PARA INCREMENTAR LAS LETRAS, AHORA MISMO NO TENGO NI IDEA
-    //AUNQUE PREFIERO DEJAR ESTO PARA EL FINAL, YA QUE EN LA VIDA VAMOS A LLEGAR
-    //A SUMAR UNA LETRA EN TODO LO QUE PRACTIQUEMOS, ASÍ QUE SOLO HE HECHOO QUE 
-    //SUME NUMEROS
-    private String sumarLetra (String letrasMatricula){
-        return letrasMatricula;
-    }
     
     
     //El metodo de estacionar
-    public Ticket estacionar() {
-    for (int piso = 0; piso < 3; piso++) {
-        for (int plaza = 0; plaza < 20; plaza++) {
+    public Ticket estacionar(String matricula) {
+    for (int piso = 0; piso < parking.length; piso++) {
+        for (int plaza = 0; plaza < parking[piso].length; plaza++) {
             if (parking[piso][plaza] == 0) {  // En el caso de que la plaza esté libre
-                String matricula = generarMatricula(); //Solicitamos la matricula unica generada
                 Ticket ticket = new Ticket(matricula, piso, plaza);  // Creamos el ticket
                 tickets.add(ticket);  // Guardamos el ticket en el array de tickets
                 parking[piso][plaza] = contador;  // Marcar la plaza como ocupada
@@ -58,6 +36,18 @@ public class Parking {
         }
     }
     return null;  // Parking lleno
-}
+    }
+    
+    public void vaciarPlaza(Ticket ticket){
+        for (int piso = 0; piso < parking.length; piso++) {
+            for (int plaza = 0; plaza < parking[piso].length; plaza++) {
+                if (parking[piso][plaza] == ticket.getId()) {
+                    parking[piso][plaza] = 0; // La plaza seleccionada queda libre
+                    tickets.remove(ticket); // Eliminanos el ticket de la lista
+                    return;
+                }
+            }
+        }
+    }
     
 }
