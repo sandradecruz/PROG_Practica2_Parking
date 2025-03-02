@@ -31,15 +31,14 @@ public class DepositoDinero {
         System.out.println("Valor no válido: " + valor);
     }
 
-    // ARREGLAR Verificación de que se necesite cambio
     public boolean hayCambio(double cambio) {
         int[] copiaCantidades = cantidades.clone();
-        return calcularCambio(cambio, copiaCantidades) != null;
+        return calcularCambioOptimo(cambio, copiaCantidades) != null;
     }
 
     // Calculo y entrega del cambio optimizado.
     public int[] calcularCambio(double cantidad) {
-        int[] cambioEntregado = calcularCambio(cantidad, cantidades);
+        int[] cambioEntregado = calcularCambioOptimo(cantidad, cantidades);
         if (cambioEntregado != null) {
             // Restamos del depósito el tipo de moneda dada como cambio
             for (int i = 0; i < valores.length; i++) {
@@ -50,11 +49,10 @@ public class DepositoDinero {
     }
 
     // Calculamos el cambio óptimo
-    private int[] calcularCambio(double cantidad, int[] depositoTemporal) { //cambio int[] depositoTemporal por double costeParking para hacer pruebas
+    private int[] calcularCambioOptimo(double cantidad, int[] depositoTemporal) {
         int[] cambio = new int[valores.length];
 
         for (int i = 0; i < valores.length; i++) {
-            if (cantidad <= 0.01) break; //Optimizar
             int disponibles = depositoTemporal[i];
             int cantidadUsada = (int) (cantidad / valores[i]);
 
@@ -62,13 +60,24 @@ public class DepositoDinero {
                 cantidadUsada = Math.min(disponibles, cantidadUsada);
                 cambio[i] = cantidadUsada;
                 cantidad -= cantidadUsada * valores[i];
-                cantidad = Math.round(cantidad * 100.0) / 100.0; // Redondeamos a lo alto.
             }
         }
-        if (cantidad > 0.05) return null;
-        return cambio;
+        if (cantidad == 0) return cambio;
+        return null;
     }
 
+    
+    // Método para mostrar el cambio entregado
+    public void mostrarCambio(int[] cambio) {
+        System.out.println("Cambio entregado:");
+        for (int i = 0; i < valores.length; i++) {
+            if (cambio[i] > 0) {
+                System.out.println(cambio[i] + " moneda(s)/billete(s) de " + valores[i] + "€");
+            }
+        }
+    }
+    
+    //EXTRA: ES PARA HACER PRUEBAS DEL CORRECTO FUNCIONAMIENTO DEL DEPOSITO 
     // Cantidad de monedas que hay en el deposito
     public void mostrarDeposito() {
         System.out.println("Estado del depósito:");
@@ -76,4 +85,5 @@ public class DepositoDinero {
             System.out.println(valores[i] + "€: " + cantidades[i] + " unidades");
         }
     }
+    
 }
