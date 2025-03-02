@@ -5,6 +5,7 @@
 package intento2Parking;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -12,13 +13,46 @@ import java.time.LocalDateTime;
  */
 public class Ticket {
     
-    int id;
-    String matricula;
-    LocalDateTime fechaHoraEntrada;
-    int piso;
-    int plaza;
+    private static int contador = 1; // Para generar IDs únicos
+    private int id;
+    private String matricula;
+    private LocalDateTime fechaHoraEntrada;
+    private int piso;
+    private int plaza;
     
     public Ticket (String matricula, int piso, int plaza){
-        
+        this.id = contador++;
+        this.matricula = matricula;
+        this.fechaHoraEntrada = LocalDateTime.now();
+        this.piso = piso;
+        this.plaza = plaza;
+    }
+    
+    //getters
+    public int getId() {
+        return id;
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public LocalDateTime getFechaHoraEntrada() {
+        return fechaHoraEntrada;
+    }
+
+    public int getPiso() {
+        return piso;
+    }
+
+    public int getPlaza() {
+        return plaza;
+    }
+
+    //Override para mostrar el tiket, habrá que ponerlo mas coquette
+    @Override
+    public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm:ss");
+        return "Ticket{id=" + id + ", fechaHora=" + fechaHoraEntrada.format(formatter) + ", matricula=" + matricula + ", sitio=piso=" + piso + ", plaza=" + plaza + "}";
     }
 }
