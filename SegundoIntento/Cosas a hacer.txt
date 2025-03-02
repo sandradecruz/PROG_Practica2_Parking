@@ -1,0 +1,73 @@
+Cosas a hacer:
+
+
+CLASE PRINCIPAL
+Ejecuta el programa.
+Crea la maquina (indicando el precio por minuto).
+Crea el terminal.
+-------------------------------------------------------------------
+
+CLASE MAQUINA
+Maneja el parking y pagos
+Gestiona entrada y salida de coches (Atributo Parking parking)
+Controla el deposito y pagos (Atributo DepositoDinero deposito)
+
+	METODOS A REALIZAR:
+ 
+	-constructor Maquina(double precioPorMinuto)
+
+	-estacionarVehiculo : Asigna una plaza y genera un ticket
+
+	-public doublé calcularTarifa(Ticket ticket): Calcula el importe a pagar según el tiempo estacionado.
+
+	-realizar pago
+
+	-retirar vehiculo ( id del ticket, dinero ingresado)
+		-->Llama a realizar el pago, y si el pago es correcto libera la plaza de parking 
+
+-------------------------------------------------------------------
+CLASE PARKING
+Controla el estado de las plazas de parking
+int [][] parking: Matriz del parking
+ArrayList<Ticket> tickets: Almacena los tickets generados
+	constructor Parking
+	generarMatricula (que ahora me he dado cuenta que hay que guardar la matricula en una variable externa, porque luego la vamos a necesitar para general el ticket)
+	método de estacionar
+
+-------------------------------------------------------------------
+
+CLASE TERMINAL
+Botones para estacionar y retirar el coche (Opcional, botón para mostrar el plano del parking)
+
+accionEstacionar --> parking.estacionar()
+accionRetirar --> parking.retirarCoche()
+
+(mostrarPlano --> mostrar la matriz)
+
+
+
+-------------------------------------------------------------------
+
+CLASE DEPOSITO
+Creo que el mio se puede reutilizar prácticamente entero
+Array de los valores aceptados
+Array de la cantidad disponible de cada moneda
+Constructor DepositoDinero agregando 100 unidades de cada
+agregarDinero
+calcularCambio
+hayCambio: boolean, nos indica si hay que dar cambio o no
+
+
+
+-------------------------------------------------------------------
+
+CLASE TICKET
+Solo contiene la información que guarda el ticket
+int id
+String matricula
+LocalDateTime fechaHoraEntrada (en los apuntes también indica que hay que guardar la fecha además de la hora)
+int piso
+int plaza
+
+	Constructor Ticket (String matricula, int piso, int plaza)
+	getters de id, piso, plaza y matricula
