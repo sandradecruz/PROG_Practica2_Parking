@@ -28,7 +28,7 @@ public class DepositoDinero {
             }
         }
         //Esto no va a saltar nunca gracias a la lista y el scroll para seleccionar los billetes y su cantidad
-        System.out.println("Valor no válido: " + valor);
+        System.out.println("Valor no vÃ¡lido: " + valor);
     }
 
     public boolean hayCambio(double cambio) {
@@ -40,7 +40,7 @@ public class DepositoDinero {
     public int[] calcularCambio(double cantidad) {
         int[] cambioEntregado = calcularCambioOptimo(cantidad, cantidades);
         if (cambioEntregado != null) {
-            // Restamos del depósito el tipo de moneda dada como cambio
+            // Restamos del depÃ³sito el tipo de moneda dada como cambio
             for (int i = 0; i < valores.length; i++) {
                 cantidades[i] -= cambioEntregado[i];
             }
@@ -48,7 +48,7 @@ public class DepositoDinero {
         return cambioEntregado;
     }
 
-    // Calculamos el cambio óptimo
+    // Calculamos el cambio ï¿½ptimo
     private int[] calcularCambioOptimo(double cantidad, int[] depositoTemporal) {
         int[] cambio = new int[valores.length];
 
@@ -67,12 +67,12 @@ public class DepositoDinero {
     }
 
     
-    // Método para mostrar el cambio entregado
+    // Mï¿½todo para mostrar el cambio entregado
     public void mostrarCambio(int[] cambio) {
         System.out.println("Cambio entregado:");
         for (int i = 0; i < valores.length; i++) {
             if (cambio[i] > 0) {
-                System.out.println(cambio[i] + " moneda(s)/billete(s) de " + valores[i] + "€");
+                System.out.println(cambio[i] + " moneda(s)/billete(s) de " + valores[i] + "ï¿½");
             }
         }
     }
@@ -80,9 +80,9 @@ public class DepositoDinero {
     //EXTRA: ES PARA HACER PRUEBAS DEL CORRECTO FUNCIONAMIENTO DEL DEPOSITO 
     // Cantidad de monedas que hay en el deposito
     public void mostrarDeposito() {
-        System.out.println("Estado del depósito:");
+        System.out.println("Estado del depÃ³sito:");
         for (int i = 0; i < valores.length; i++) {
-            System.out.println(valores[i] + "€: " + cantidades[i] + " unidades");
+            System.out.println(valores[i] + "â‚¬: " + cantidades[i] + " unidades");
         }
     }
     
