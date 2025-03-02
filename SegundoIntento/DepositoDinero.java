@@ -28,10 +28,10 @@ public class DepositoDinero {
             }
         }
         //Esto no va a saltar nunca gracias a la lista y el scroll para seleccionar los billetes y su cantidad
-        System.out.println("Valor no v·lido: " + valor);
+        System.out.println("Valor no v√°lido: " + valor);
     }
 
-    // ARREGLAR VerificaciÛn de que se necesite cambio
+    // ARREGLAR Verificaci√≥n de que se necesite cambio
     public boolean hayCambio(double cambio) {
         int[] copiaCantidades = cantidades.clone();
         return calcularCambio(cambio, copiaCantidades) != null;
@@ -41,7 +41,7 @@ public class DepositoDinero {
     public int[] calcularCambio(double cantidad) {
         int[] cambioEntregado = calcularCambio(cantidad, cantidades);
         if (cambioEntregado != null) {
-            // Restamos del depÛsito el tipo de moneda dada como cambio
+            // Restamos del dep√≥sito el tipo de moneda dada como cambio
             for (int i = 0; i < valores.length; i++) {
                 cantidades[i] -= cambioEntregado[i];
             }
@@ -49,12 +49,11 @@ public class DepositoDinero {
         return cambioEntregado;
     }
 
-    // Calculamos el cambio Ûptimo
+    // Calculamos el cambio √≥ptimo
     private int[] calcularCambio(double cantidad, int[] depositoTemporal) { //cambio int[] depositoTemporal por double costeParking para hacer pruebas
         int[] cambio = new int[valores.length];
 
         for (int i = 0; i < valores.length; i++) {
-            if (cantidad <= 0.01) break; //Optimizar
             int disponibles = depositoTemporal[i];
             int cantidadUsada = (int) (cantidad / valores[i]);
 
@@ -71,9 +70,9 @@ public class DepositoDinero {
 
     // Cantidad de monedas que hay en el deposito
     public void mostrarDeposito() {
-        System.out.println("Estado del depÛsito:");
+        System.out.println("Estado del dep√≥sito:");
         for (int i = 0; i < valores.length; i++) {
-            System.out.println(valores[i] + "Ä: " + cantidades[i] + " unidades");
+            System.out.println(valores[i] + "‚Ç¨: " + cantidades[i] + " unidades");
         }
     }
 }
