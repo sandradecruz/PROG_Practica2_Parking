@@ -49,10 +49,17 @@ public class Ticket {
         return plaza;
     }
 
-    //Override para mostrar el tiket, habrá que ponerlo mas coquette
+    //Override para mostrar el ticket
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm:ss");
-        return "Ticket{id=" + id + ", fechaHora=" + fechaHoraEntrada.format(formatter) + ", matricula=" + matricula + ", sitio=piso=" + piso + ", plaza=" + plaza + "}";
+           return "\n===============================" +
+               "\n   TICKET DE ESTACIONAMIENTO   " +
+               "\n===============================" +
+               "\n ID: " + id +
+               "\n Fecha y Hora: " + fechaHoraEntrada.format(formatter) +
+               "\n Matrícula: " + matricula +
+               "\n Ubicación: Piso " + piso + " - Plaza " + plaza +
+               "\n===============================\n";
     }
 }

@@ -38,6 +38,7 @@ public class Parking {
     return null;  // Parking lleno
     }
     
+    //El metodo de liberar plaza
     public void vaciarPlaza(Ticket ticket){
         for (int piso = 0; piso < parking.length; piso++) {
             for (int plaza = 0; plaza < parking[piso].length; plaza++) {

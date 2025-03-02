@@ -10,7 +10,7 @@ package intento2Parking;
  */
 public class Principal {
     public static void main(String[] args) {
-        Maquina maquina = new Maquina (0.50);
+        Maquina maquina = new Maquina (0.50); //Creamos la maquina pasando la tarifa por minuto
         Terminal terminal = new Terminal();
         terminal.setVisible(true);
     }
